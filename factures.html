@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DOVIRA ‚Äî Espace Factures</title>
+  <title>DOVIRA — Espace Factures</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -175,7 +175,7 @@
     }
 
     /* ============================================
-       VUE 1 ‚Äî LOGIN
+       VUE 1 — LOGIN
        ============================================ */
     #view-login {
       display: flex;
@@ -215,7 +215,7 @@
     }
 
     /* ============================================
-       VUE 2 ‚Äî DASHBOARD
+       VUE 2 — DASHBOARD
        ============================================ */
     #view-dashboard { display: none; }
 
@@ -409,17 +409,17 @@
 <body>
 
   <!-- ============================================
-       VUE 1 ‚Äî LOGIN
+       VUE 1 — LOGIN
        ============================================ -->
   <div id="view-login">
     <div class="login-card card">
       <div class="logo">DOVIRA</div>
-      <p class="subtitle">Espace monteurs ‚Äî Gestion des factures</p>
+      <p class="subtitle">Espace monteurs — Gestion des factures</p>
 
       <form id="login-form" novalidate>
         <div class="form-group">
-          <label for="login-prenom">Pr√©nom *</label>
-          <input type="text" id="login-prenom" placeholder="Ton pr√©nom" required>
+          <label for="login-prenom">Prénom *</label>
+          <input type="text" id="login-prenom" placeholder="Ton prénom" required>
         </div>
         <div class="form-group">
           <label for="login-nom">Nom *</label>
@@ -429,28 +429,28 @@
           <label for="login-email">Email *</label>
           <input type="email" id="login-email" placeholder="ton@email.com" required>
         </div>
-        <button type="submit" class="btn-primary">Acc√©der √† mon espace ‚Üí</button>
+        <button type="submit" class="btn-primary">Accéder à mon espace →</button>
       </form>
     </div>
   </div>
 
   <!-- ============================================
-       VUE 2 ‚Äî DASHBOARD
+       VUE 2 — DASHBOARD
        ============================================ -->
   <div id="view-dashboard">
 
     <!-- NAVBAR -->
     <nav class="navbar">
       <div class="nav-logo">DOVIRA</div>
-      <div class="nav-greeting" id="nav-greeting">Bonjour üëã</div>
-      <button class="btn-logout" id="btn-logout">Se d√©connecter</button>
+      <div class="nav-greeting" id="nav-greeting">Bonjour 👋</div>
+      <button class="btn-logout" id="btn-logout">Se déconnecter</button>
     </nav>
 
     <div class="dashboard-content">
 
-      <!-- SECTION 1 ‚Äî FORMULAIRE D√âP√îT -->
+      <!-- SECTION 1 — FORMULAIRE DÉPÔT -->
       <section>
-        <h2 class="section-title">D√âPOSER UNE <span>FACTURE</span></h2>
+        <h2 class="section-title">DÉPOSER UNE <span>FACTURE</span></h2>
 
         <div class="card">
           <form id="invoice-form" novalidate>
@@ -459,17 +459,17 @@
               <div class="form-group">
                 <label for="inv-mois">Mois de la prestation *</label>
                 <select id="inv-mois" required>
-                  <option value="">‚Äî S√©lectionner ‚Äî</option>
+                  <option value="">— Sélectionner —</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label for="inv-numero">Num√©ro de facture *</label>
+                <label for="inv-numero">Numéro de facture *</label>
                 <input type="text" id="inv-numero" placeholder="FAC-2026-001" required>
               </div>
 
               <div class="form-group">
-                <label for="inv-montant-ht">Montant HT (‚Ç¨) *</label>
+                <label for="inv-montant-ht">Montant HT (€) *</label>
                 <input type="number" id="inv-montant-ht" placeholder="1200" min="0" step="0.01" required>
               </div>
 
@@ -483,7 +483,7 @@
 
               <div class="form-group">
                 <label for="inv-montant-ttc">Montant TTC</label>
-                <input type="text" id="inv-montant-ttc" class="readonly-field" readonly value="0 ‚Ç¨">
+                <input type="text" id="inv-montant-ttc" class="readonly-field" readonly value="0 €">
               </div>
 
               <div class="form-group">
@@ -504,17 +504,17 @@
             </div>
 
             <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
-              Envoyer ma facture ‚Üí
+              Envoyer ma facture →
             </button>
           </form>
 
           <div class="confirmation" id="confirmation">
-            ‚úÖ Facture envoy√©e ! Khalid a √©t√© notifi√©.
+            ✅ Facture envoyée ! Khalid a été notifié.
           </div>
         </div>
       </section>
 
-      <!-- SECTION 2 ‚Äî MES FACTURES -->
+      <!-- SECTION 2 — MES FACTURES -->
       <section class="invoices-section">
         <h2 class="section-title">MES <span>FACTURES</span></h2>
 
@@ -532,23 +532,23 @@
        UTILITAIRES
        ============================================ */
 
-    /** Formate un nombre en format fran√ßais lisible : 1 200 ‚Ç¨ */
+    /** Formate un nombre en format français lisible : 1 200 € */
     function formatMontant(n) {
-      return Number(n).toLocaleString('fr-FR') + ' ‚Ç¨';
+      return Number(n).toLocaleString('fr-FR') + ' €';
     }
 
-    /** Retourne le badge HTML pour un statut donn√© */
+    /** Retourne le badge HTML pour un statut donné */
     function badgeStatut(statut) {
       const map = {
-        'En attente': '<span class="badge badge-attente">üü° En attente</span>',
-        'En cours':   '<span class="badge badge-encours">üîµ En cours</span>',
-        'Pay√©e':      '<span class="badge badge-payee">üü¢ Pay√©e</span>',
-        'Probl√®me':   '<span class="badge badge-probleme">üî¥ Probl√®me</span>',
+        'En attente': '<span class="badge badge-attente">🟡 En attente</span>',
+        'En cours':   '<span class="badge badge-encours">🔵 En cours</span>',
+        'Payée':      '<span class="badge badge-payee">🟢 Payée</span>',
+        'Problème':   '<span class="badge badge-probleme">🔴 Problème</span>',
       };
       return map[statut] || statut;
     }
 
-    /** Retourne toutes les factures stock√©es */
+    /** Retourne toutes les factures stockées */
     function getFactures() {
       return JSON.parse(localStorage.getItem('dovira_factures') || '[]');
     }
@@ -558,13 +558,13 @@
       localStorage.setItem('dovira_factures', JSON.stringify(arr));
     }
 
-    /** Retourne le profil connect√© ou null */
+    /** Retourne le profil connecté ou null */
     function getProfil() {
       const d = localStorage.getItem('dovira_profil');
       return d ? JSON.parse(d) : null;
     }
 
-    /** Calcule le prochain num√©ro de facture incr√©mental */
+    /** Calcule le prochain numéro de facture incrémental */
     function prochainNumero() {
       const factures = getFactures();
       const year = new Date().getFullYear();
@@ -577,7 +577,7 @@
     }
 
     /* ============================================
-       DONN√âES DE TEST
+       DONNÉES DE TEST
        ============================================ */
     function initTestData() {
       if (localStorage.getItem('dovira_factures')) return;
@@ -593,7 +593,7 @@
           tva: 0,
           montantTTC: 450,
           description: 'Montage 6 Reels @TomyMotiv',
-          statut: 'Pay√©e',
+          statut: 'Payée',
           dateEnvoi: '2026-01-15',
           pdf: null,
         },
@@ -602,7 +602,7 @@
           nom: 'Benali',
           email: 'sofia@test.fr',
           numero: 'FAC-2026-002',
-          mois: 'F√©vrier 2026',
+          mois: 'Février 2026',
           montantHT: 600,
           tva: 20,
           montantTTC: 720,
@@ -622,8 +622,8 @@
     function initMoisSelect() {
       const select = document.getElementById('inv-mois');
       const moisNoms = [
-        'Janvier','F√©vrier','Mars','Avril','Mai','Juin',
-        'Juillet','Ao√ªt','Septembre','Octobre','Novembre','D√©cembre'
+        'Janvier','Février','Mars','Avril','Mai','Juin',
+        'Juillet','Août','Septembre','Octobre','Novembre','Décembre'
       ];
       const annees = [2025, 2026];
 
@@ -638,7 +638,7 @@
     }
 
     /* ============================================
-       CALCUL TTC EN TEMPS R√âEL
+       CALCUL TTC EN TEMPS RÉEL
        ============================================ */
     function updateTTC() {
       const ht = parseFloat(document.getElementById('inv-montant-ht').value) || 0;
@@ -660,7 +660,7 @@
       );
 
       if (factures.length === 0) {
-        container.innerHTML = '<div class="empty-state">Aucune facture d√©pos√©e pour le moment.</div>';
+        container.innerHTML = '<div class="empty-state">Aucune facture déposée pour le moment.</div>';
         return;
       }
 
@@ -669,7 +669,7 @@
           <table>
             <thead>
               <tr>
-                <th>N¬∞ Facture</th>
+                <th>N° Facture</th>
                 <th>Mois</th>
                 <th>Montant TTC</th>
                 <th>Description</th>
@@ -697,7 +697,7 @@
             <td>
               ${f.pdf
                 ? '<button class="btn-pdf" onclick="voirPDF(\'' + f.numero + '\')">Voir PDF</button>'
-                : '<span style="color:var(--text-muted);font-size:12px">‚Äî</span>'
+                : '<span style="color:var(--text-muted);font-size:12px">—</span>'
               }
             </td>
           </tr>
@@ -730,7 +730,7 @@
     }
 
     /* ============================================
-       NAVIGATION LOGIN ‚Üî DASHBOARD
+       NAVIGATION LOGIN ↔ DASHBOARD
        ============================================ */
     function showLogin() {
       document.getElementById('view-login').style.display = 'flex';
@@ -743,7 +743,7 @@
 
       document.getElementById('view-login').style.display = 'none';
       document.getElementById('view-dashboard').style.display = 'block';
-      document.getElementById('nav-greeting').textContent = 'Bonjour ' + profil.prenom + ' üëã';
+      document.getElementById('nav-greeting').textContent = 'Bonjour ' + profil.prenom + ' 👋';
       document.getElementById('inv-numero').value = prochainNumero();
       updateTTC();
       renderFactures();
@@ -783,7 +783,7 @@
       document.getElementById('login-form').reset();
     });
 
-    // CALCUL TTC TEMPS R√âEL
+    // CALCUL TTC TEMPS RÉEL
     document.getElementById('inv-montant-ht').addEventListener('input', updateTTC);
     document.getElementById('inv-tva').addEventListener('change', updateTTC);
 
@@ -808,19 +808,19 @@
       }
 
       if (montantHT <= 0) {
-        alert('Le montant HT doit √™tre sup√©rieur √† 0.');
+        alert('Le montant HT doit être supérieur à 0.');
         return;
       }
 
-      // V√©rifier si fichier est bien un PDF
+      // Vérifier si fichier est bien un PDF
       if (pdfInput.files.length > 0 && pdfInput.files[0].type !== 'application/pdf') {
-        alert('Seuls les fichiers PDF sont accept√©s.');
+        alert('Seuls les fichiers PDF sont acceptés.');
         return;
       }
 
       const montantTTC = montantHT * (1 + tva / 100);
 
-      // Lire le PDF en base64 si pr√©sent
+      // Lire le PDF en base64 si présent
       let pdfBase64 = null;
       if (pdfInput.files.length > 0) {
         pdfBase64 = await new Promise((resolve) => {
@@ -830,7 +830,7 @@
         });
       }
 
-      // Cr√©er l'objet facture
+      // Créer l'objet facture
       const facture = {
         prenom: profil.prenom,
         nom: profil.nom,
@@ -857,11 +857,11 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
-            _subject: 'Nouvelle facture Dovira ‚Äî ' + profil.prenom + ' ' + profil.nom + ' ‚Äî ' + numero,
-            'Pr√©nom': profil.prenom,
+            _subject: 'Nouvelle facture Dovira — ' + profil.prenom + ' ' + profil.nom + ' — ' + numero,
+            'Prénom': profil.prenom,
             'Nom': profil.nom,
             'Email monteur': profil.email,
-            'Num√©ro facture': numero,
+            'Numéro facture': numero,
             'Mois prestation': mois,
             'Montant HT': formatMontant(montantHT),
             'TVA': tva + '%',
@@ -873,7 +873,7 @@
         console.warn('Formspree error:', err);
       }
 
-      // 3. Confirmation anim√©e
+      // 3. Confirmation animée
       const conf = document.getElementById('confirmation');
       conf.classList.add('show');
       setTimeout(() => conf.classList.remove('show'), 4000);
@@ -891,7 +891,7 @@
     initTestData();
     initMoisSelect();
 
-    // Si d√©j√† connect√© ‚Üí dashboard direct
+    // Si déjà connecté → dashboard direct
     if (getProfil()) {
       showDashboard();
     }
