@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DOVIRA — Espace Factures</title>
+  <title>DOVIRA ‚Äî Espace Factures</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Firebase SDK (CDN) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <style>
     /* ============================================
@@ -175,7 +179,7 @@
     }
 
     /* ============================================
-       VUE 1 — LOGIN
+       VUE 1 ‚Äî LOGIN
        ============================================ */
     #view-login {
       display: flex;
@@ -215,7 +219,7 @@
     }
 
     /* ============================================
-       VUE 2 — DASHBOARD
+       VUE 2 ‚Äî DASHBOARD
        ============================================ */
     #view-dashboard { display: none; }
 
@@ -428,7 +432,7 @@
     }
 
     /* ============================================
-       VUE 3 — ADMIN DASHBOARD
+       VUE 3 ‚Äî ADMIN DASHBOARD
        ============================================ */
     #view-admin { display: none; }
 
@@ -505,17 +509,17 @@
 <body>
 
   <!-- ============================================
-       VUE 1 — LOGIN
+       VUE 1 ‚Äî LOGIN
        ============================================ -->
   <div id="view-login">
     <div class="login-card card">
       <div class="logo">DOVIRA</div>
-      <p class="subtitle">Espace monteurs — Gestion des factures</p>
+      <p class="subtitle">Espace monteurs ‚Äî Gestion des factures</p>
 
       <form id="login-form" novalidate>
         <div class="form-group">
-          <label for="login-prenom">Prénom *</label>
-          <input type="text" id="login-prenom" placeholder="Ton prénom" required>
+          <label for="login-prenom">Pr√©nom *</label>
+          <input type="text" id="login-prenom" placeholder="Ton pr√©nom" required>
         </div>
         <div class="form-group">
           <label for="login-nom">Nom *</label>
@@ -525,37 +529,37 @@
           <label for="login-email">Email *</label>
           <input type="email" id="login-email" placeholder="ton@email.com" required>
         </div>
-        <button type="submit" class="btn-primary">Accéder à mon espace →</button>
+        <button type="submit" class="btn-primary">Acc√©der √† mon espace ‚Üí</button>
       </form>
 
-      <a class="admin-link" id="admin-link">Accès admin →</a>
+      <a class="admin-link" id="admin-link">Acc√®s admin ‚Üí</a>
 
       <div class="admin-password-group" id="admin-password-group">
         <input type="password" id="admin-password" placeholder="Mot de passe admin">
         <button class="btn-primary" id="admin-login-btn" style="width:100%;justify-content:center;">
-          Connexion admin →
+          Connexion admin ‚Üí
         </button>
       </div>
     </div>
   </div>
 
   <!-- ============================================
-       VUE 2 — DASHBOARD
+       VUE 2 ‚Äî DASHBOARD
        ============================================ -->
   <div id="view-dashboard">
 
     <!-- NAVBAR -->
     <nav class="navbar">
       <div class="nav-logo">DOVIRA</div>
-      <div class="nav-greeting" id="nav-greeting">Bonjour 👋</div>
-      <button class="btn-logout" id="btn-logout">Se déconnecter</button>
+      <div class="nav-greeting" id="nav-greeting">Bonjour üëã</div>
+      <button class="btn-logout" id="btn-logout">Se d√©connecter</button>
     </nav>
 
     <div class="dashboard-content">
 
-      <!-- SECTION 1 — FORMULAIRE DÉPÔT -->
+      <!-- SECTION 1 ‚Äî FORMULAIRE D√âP√îT -->
       <section>
-        <h2 class="section-title">DÉPOSER UNE <span>FACTURE</span></h2>
+        <h2 class="section-title">D√âPOSER UNE <span>FACTURE</span></h2>
 
         <div class="card">
           <form id="invoice-form" novalidate>
@@ -564,17 +568,17 @@
               <div class="form-group">
                 <label for="inv-mois">Mois de la prestation *</label>
                 <select id="inv-mois" required>
-                  <option value="">— Sélectionner —</option>
+                  <option value="">‚Äî S√©lectionner ‚Äî</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label for="inv-numero">Numéro de facture *</label>
+                <label for="inv-numero">Num√©ro de facture *</label>
                 <input type="text" id="inv-numero" placeholder="FAC-2026-001" required>
               </div>
 
               <div class="form-group">
-                <label for="inv-montant-ht">Montant HT (€) *</label>
+                <label for="inv-montant-ht">Montant HT (‚Ç¨) *</label>
                 <input type="number" id="inv-montant-ht" placeholder="1200" min="0" step="0.01" required>
               </div>
 
@@ -588,7 +592,7 @@
 
               <div class="form-group">
                 <label for="inv-montant-ttc">Montant TTC</label>
-                <input type="text" id="inv-montant-ttc" class="readonly-field" readonly value="0 €">
+                <input type="text" id="inv-montant-ttc" class="readonly-field" readonly value="0 ‚Ç¨">
               </div>
 
               <div class="form-group">
@@ -609,17 +613,17 @@
             </div>
 
             <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
-              Envoyer ma facture →
+              Envoyer ma facture ‚Üí
             </button>
           </form>
 
           <div class="confirmation" id="confirmation">
-            ✅ Facture envoyée ! Khalid a été notifié.
+            ‚úÖ Facture envoy√©e ! Khalid a √©t√© notifi√©.
           </div>
         </div>
       </section>
 
-      <!-- SECTION 2 — MES FACTURES -->
+      <!-- SECTION 2 ‚Äî MES FACTURES -->
       <section class="invoices-section">
         <h2 class="section-title">MES <span>FACTURES</span></h2>
 
@@ -630,7 +634,7 @@
   </div>
 
   <!-- ============================================
-       VUE 3 — ADMIN DASHBOARD
+       VUE 3 ‚Äî ADMIN DASHBOARD
        ============================================ -->
   <div id="view-admin">
 
@@ -638,7 +642,7 @@
     <nav class="navbar">
       <div class="nav-logo">DOVIRA</div>
       <div class="nav-greeting" style="color:var(--highlight);font-weight:600;">Admin Dashboard</div>
-      <button class="btn-logout" id="btn-admin-logout">Se déconnecter</button>
+      <button class="btn-logout" id="btn-admin-logout">Se d√©connecter</button>
     </nav>
 
     <div class="dashboard-content" style="max-width:1100px;">
@@ -650,12 +654,12 @@
           <div class="kpi-label">Total factures</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-value" id="kpi-a-payer" style="color:#facc15;">0 €</div>
-          <div class="kpi-label">Total à payer</div>
+          <div class="kpi-value" id="kpi-a-payer" style="color:#facc15;">0 ‚Ç¨</div>
+          <div class="kpi-label">Total √† payer</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-value" id="kpi-paye" style="color:#4ade80;">0 €</div>
-          <div class="kpi-label">Total payé ce mois</div>
+          <div class="kpi-value" id="kpi-paye" style="color:#4ade80;">0 ‚Ç¨</div>
+          <div class="kpi-label">Total pay√© ce mois</div>
         </div>
       </div>
 
@@ -671,91 +675,51 @@
        ============================================ -->
   <script>
     /* ============================================
+       FIREBASE INIT
+       ============================================ */
+    firebase.initializeApp({
+      apiKey: "AIzaSyAgZUjxaJnUfhdsu76Qk6naWTlO4Kysi-M",
+      authDomain: "dovira-factures.firebaseapp.com",
+      projectId: "dovira-factures",
+      storageBucket: "dovira-factures.firebasestorage.app",
+      messagingSenderId: "995564565330",
+      appId: "1:995564565330:web:3c9c74ac3705ade76fc08b"
+    });
+    const db = firebase.firestore();
+    const facturesRef = db.collection('factures');
+
+    /* ============================================
        UTILITAIRES
        ============================================ */
-
-    /** Formate un nombre en format français lisible : 1 200 € */
     function formatMontant(n) {
-      return Number(n).toLocaleString('fr-FR') + ' €';
+      return Number(n).toLocaleString('fr-FR') + ' ‚Ç¨';
     }
 
-    /** Retourne le badge HTML pour un statut donné */
     function badgeStatut(statut) {
       const map = {
-        'En attente': '<span class="badge badge-attente">🟡 En attente</span>',
-        'En cours':   '<span class="badge badge-encours">🔵 En cours</span>',
-        'Payée':      '<span class="badge badge-payee">🟢 Payée</span>',
-        'Problème':   '<span class="badge badge-probleme">🔴 Problème</span>',
+        'En attente': '<span class="badge badge-attente">üü° En attente</span>',
+        'En cours':   '<span class="badge badge-encours">üîµ En cours</span>',
+        'Pay√©e':      '<span class="badge badge-payee">üü¢ Pay√©e</span>',
+        'Probl√®me':   '<span class="badge badge-probleme">üî¥ Probl√®me</span>',
       };
       return map[statut] || statut;
     }
 
-    /** Retourne toutes les factures stockées */
-    function getFactures() {
-      return JSON.parse(localStorage.getItem('dovira_factures') || '[]');
-    }
-
-    /** Sauvegarde les factures */
-    function setFactures(arr) {
-      localStorage.setItem('dovira_factures', JSON.stringify(arr));
-    }
-
-    /** Retourne le profil connecté ou null */
     function getProfil() {
       const d = localStorage.getItem('dovira_profil');
       return d ? JSON.parse(d) : null;
     }
 
-    /** Calcule le prochain numéro de facture incrémental */
-    function prochainNumero() {
-      const factures = getFactures();
+    async function prochainNumero() {
+      const snapshot = await facturesRef.get();
       const year = new Date().getFullYear();
       let max = 0;
-      factures.forEach(f => {
-        const m = f.numero.match(/FAC-\d{4}-(\d+)/);
+      snapshot.forEach(doc => {
+        const f = doc.data();
+        const m = f.numero ? f.numero.match(/FAC-\d{4}-(\d+)/) : null;
         if (m) max = Math.max(max, parseInt(m[1], 10));
       });
       return 'FAC-' + year + '-' + String(max + 1).padStart(3, '0');
-    }
-
-    /* ============================================
-       DONNÉES DE TEST
-       ============================================ */
-    function initTestData() {
-      if (localStorage.getItem('dovira_factures')) return;
-
-      const testFactures = [
-        {
-          prenom: 'Lucas',
-          nom: 'Martin',
-          email: 'lucas@test.fr',
-          numero: 'FAC-2026-001',
-          mois: 'Janvier 2026',
-          montantHT: 450,
-          tva: 0,
-          montantTTC: 450,
-          description: 'Montage 6 Reels @TomyMotiv',
-          statut: 'Payée',
-          dateEnvoi: '2026-01-15',
-          pdf: null,
-        },
-        {
-          prenom: 'Sofia',
-          nom: 'Benali',
-          email: 'sofia@test.fr',
-          numero: 'FAC-2026-002',
-          mois: 'Février 2026',
-          montantHT: 600,
-          tva: 20,
-          montantTTC: 720,
-          description: 'Pack Ads Meta @angelorodrigues__',
-          statut: 'En attente',
-          dateEnvoi: '2026-02-20',
-          pdf: null,
-        }
-      ];
-
-      setFactures(testFactures);
     }
 
     /* ============================================
@@ -764,12 +728,10 @@
     function initMoisSelect() {
       const select = document.getElementById('inv-mois');
       const moisNoms = [
-        'Janvier','Février','Mars','Avril','Mai','Juin',
-        'Juillet','Août','Septembre','Octobre','Novembre','Décembre'
+        'Janvier','F√©vrier','Mars','Avril','Mai','Juin',
+        'Juillet','Ao√ªt','Septembre','Octobre','Novembre','D√©cembre'
       ];
-      const annees = [2025, 2026];
-
-      annees.forEach(annee => {
+      [2025, 2026, 2027].forEach(annee => {
         moisNoms.forEach(mois => {
           const opt = document.createElement('option');
           opt.value = mois + ' ' + annee;
@@ -780,7 +742,7 @@
     }
 
     /* ============================================
-       CALCUL TTC EN TEMPS RÉEL
+       CALCUL TTC EN TEMPS R√âEL
        ============================================ */
     function updateTTC() {
       const ht = parseFloat(document.getElementById('inv-montant-ht').value) || 0;
@@ -790,107 +752,89 @@
     }
 
     /* ============================================
-       RENDU TABLEAU FACTURES
+       RENDU TABLEAU FACTURES (MONTEUR) ‚Äî TEMPS R√âEL
        ============================================ */
-    function renderFactures() {
-      const container = document.getElementById('invoices-container');
+    let unsubMonteur = null;
+
+    function listenFacturesMonteur() {
       const profil = getProfil();
       if (!profil) return;
+      const container = document.getElementById('invoices-container');
 
-      const factures = getFactures().filter(
-        f => f.email.toLowerCase() === profil.email.toLowerCase()
-      );
+      // Arr√™ter l'ancien listener
+      if (unsubMonteur) unsubMonteur();
 
-      if (factures.length === 0) {
-        container.innerHTML = '<div class="empty-state">Aucune facture déposée pour le moment.</div>';
-        return;
-      }
+      unsubMonteur = facturesRef
+        .where('email', '==', profil.email.toLowerCase())
+        .onSnapshot(snapshot => {
+          const factures = [];
+          snapshot.forEach(doc => factures.push({ id: doc.id, ...doc.data() }));
 
-      let html = `
-        <div class="table-wrapper">
-          <table>
-            <thead>
+          if (factures.length === 0) {
+            container.innerHTML = '<div class="empty-state">Aucune facture d√©pos√©e pour le moment.</div>';
+            return;
+          }
+
+          let html = `
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>N¬∞ Facture</th>
+                    <th>Mois</th>
+                    <th>Montant TTC</th>
+                    <th>Description</th>
+                    <th>Date d'envoi</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody>
+          `;
+
+          factures.forEach(f => {
+            const dateFormatted = f.dateEnvoi ? new Date(f.dateEnvoi).toLocaleDateString('fr-FR', {
+              day: '2-digit', month: '2-digit', year: 'numeric'
+            }) : '‚Äî';
+
+            html += `
               <tr>
-                <th>N° Facture</th>
-                <th>Mois</th>
-                <th>Montant TTC</th>
-                <th>Description</th>
-                <th>Date d'envoi</th>
-                <th>Statut</th>
-                <th>PDF</th>
+                <td style="font-weight:600;color:var(--highlight)">${f.numero}</td>
+                <td>${f.mois}</td>
+                <td style="font-weight:600">${formatMontant(f.montantTTC)}</td>
+                <td>${f.description}</td>
+                <td>${dateFormatted}</td>
+                <td>${badgeStatut(f.statut)}</td>
               </tr>
-            </thead>
-            <tbody>
-      `;
+            `;
+          });
 
-      factures.forEach((f, i) => {
-        const dateFormatted = new Date(f.dateEnvoi).toLocaleDateString('fr-FR', {
-          day: '2-digit', month: '2-digit', year: 'numeric'
+          html += '</tbody></table></div>';
+          container.innerHTML = html;
         });
-
-        html += `
-          <tr>
-            <td style="font-weight:600;color:var(--highlight)">${f.numero}</td>
-            <td>${f.mois}</td>
-            <td style="font-weight:600">${formatMontant(f.montantTTC)}</td>
-            <td>${f.description}</td>
-            <td>${dateFormatted}</td>
-            <td>${badgeStatut(f.statut)}</td>
-            <td>
-              ${f.pdf
-                ? '<button class="btn-pdf" onclick="voirPDF(\'' + f.numero + '\')">Voir PDF</button>'
-                : '<span style="color:var(--text-muted);font-size:12px">—</span>'
-              }
-            </td>
-          </tr>
-        `;
-      });
-
-      html += '</tbody></table></div>';
-      container.innerHTML = html;
-    }
-
-    /** Ouvre le PDF en base64 dans un nouvel onglet */
-    function voirPDF(numero) {
-      const factures = getFactures();
-      const f = factures.find(x => x.numero === numero);
-      if (!f || !f.pdf) return;
-
-      // Convertir base64 en blob URL
-      const byteChars = atob(f.pdf.split(',')[1]);
-      const byteArrays = [];
-      for (let i = 0; i < byteChars.length; i += 512) {
-        const slice = byteChars.slice(i, i + 512);
-        const byteNumbers = new Array(slice.length);
-        for (let j = 0; j < slice.length; j++) {
-          byteNumbers[j] = slice.charCodeAt(j);
-        }
-        byteArrays.push(new Uint8Array(byteNumbers));
-      }
-      const blob = new Blob(byteArrays, { type: 'application/pdf' });
-      window.open(URL.createObjectURL(blob), '_blank');
     }
 
     /* ============================================
-       NAVIGATION LOGIN ↔ DASHBOARD
+       NAVIGATION LOGIN ‚Üî DASHBOARD
        ============================================ */
     function showLogin() {
       document.getElementById('view-login').style.display = 'flex';
       document.getElementById('view-dashboard').style.display = 'none';
       document.getElementById('view-admin').style.display = 'none';
+      if (unsubMonteur) { unsubMonteur(); unsubMonteur = null; }
+      if (unsubAdmin) { unsubAdmin(); unsubAdmin = null; }
     }
 
-    function showDashboard() {
+    async function showDashboard() {
       const profil = getProfil();
       if (!profil) return showLogin();
 
       document.getElementById('view-login').style.display = 'none';
       document.getElementById('view-dashboard').style.display = 'block';
       document.getElementById('view-admin').style.display = 'none';
-      document.getElementById('nav-greeting').textContent = 'Bonjour ' + profil.prenom + ' 👋';
-      document.getElementById('inv-numero').value = prochainNumero();
+      document.getElementById('nav-greeting').textContent = 'Bonjour ' + profil.prenom + ' üëã';
+      document.getElementById('inv-numero').value = await prochainNumero();
       updateTTC();
-      renderFactures();
+      listenFacturesMonteur();
     }
 
     /* ============================================
@@ -915,7 +859,7 @@
         return;
       }
 
-      localStorage.setItem('dovira_profil', JSON.stringify({ prenom, nom, email }));
+      localStorage.setItem('dovira_profil', JSON.stringify({ prenom, nom, email: email.toLowerCase() }));
       showDashboard();
     });
 
@@ -923,15 +867,14 @@
     document.getElementById('btn-logout').addEventListener('click', function() {
       localStorage.removeItem('dovira_profil');
       showLogin();
-      // Reset login form
       document.getElementById('login-form').reset();
     });
 
-    // CALCUL TTC TEMPS RÉEL
+    // CALCUL TTC TEMPS R√âEL
     document.getElementById('inv-montant-ht').addEventListener('input', updateTTC);
     document.getElementById('inv-tva').addEventListener('change', updateTTC);
 
-    // SOUMISSION FACTURE
+    // SOUMISSION FACTURE ‚Üí FIREBASE
     document.getElementById('invoice-form').addEventListener('submit', async function(e) {
       e.preventDefault();
 
@@ -943,42 +886,23 @@
       const montantHT = parseFloat(document.getElementById('inv-montant-ht').value);
       const tva = parseInt(document.getElementById('inv-tva').value);
       const description = document.getElementById('inv-description').value.trim();
-      const pdfInput = document.getElementById('inv-pdf');
 
-      // Validation
       if (!mois || !numero || isNaN(montantHT) || !description) {
         alert('Merci de remplir tous les champs obligatoires.');
         return;
       }
 
       if (montantHT <= 0) {
-        alert('Le montant HT doit être supérieur à 0.');
-        return;
-      }
-
-      // Vérifier si fichier est bien un PDF
-      if (pdfInput.files.length > 0 && pdfInput.files[0].type !== 'application/pdf') {
-        alert('Seuls les fichiers PDF sont acceptés.');
+        alert('Le montant HT doit √™tre sup√©rieur √† 0.');
         return;
       }
 
       const montantTTC = montantHT * (1 + tva / 100);
 
-      // Lire le PDF en base64 si présent
-      let pdfBase64 = null;
-      if (pdfInput.files.length > 0) {
-        pdfBase64 = await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result);
-          reader.readAsDataURL(pdfInput.files[0]);
-        });
-      }
-
-      // Créer l'objet facture
       const facture = {
         prenom: profil.prenom,
         nom: profil.nom,
-        email: profil.email,
+        email: profil.email.toLowerCase(),
         numero,
         mois,
         montantHT,
@@ -987,46 +911,45 @@
         description,
         statut: 'En attente',
         dateEnvoi: new Date().toISOString().split('T')[0],
-        pdf: pdfBase64,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       };
 
-      // 1. Sauvegarder en localStorage
-      const factures = getFactures();
-      factures.push(facture);
-      setFactures(factures);
-
-      // 2. Envoyer email via Formspree
       try {
-        await fetch('https://formspree.io/f/mreyvwrk', {
+        // 1. Sauvegarder dans Firebase
+        await facturesRef.add(facture);
+
+        // 2. Envoyer email via Formspree
+        fetch('https://formspree.io/f/mreyvwrk', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
-            _subject: 'Nouvelle facture Dovira — ' + profil.prenom + ' ' + profil.nom + ' — ' + numero,
-            'Prénom': profil.prenom,
+            _subject: 'Nouvelle facture Dovira ‚Äî ' + profil.prenom + ' ' + profil.nom + ' ‚Äî ' + numero,
+            'Pr√©nom': profil.prenom,
             'Nom': profil.nom,
             'Email monteur': profil.email,
-            'Numéro facture': numero,
+            'Num√©ro facture': numero,
             'Mois prestation': mois,
             'Montant HT': formatMontant(montantHT),
             'TVA': tva + '%',
             'Montant TTC': formatMontant(montantTTC),
             'Description mission': description,
           }),
-        });
+        }).catch(err => console.warn('Formspree error:', err));
+
+        // 3. Confirmation anim√©e
+        const conf = document.getElementById('confirmation');
+        conf.classList.add('show');
+        setTimeout(() => conf.classList.remove('show'), 4000);
+
+        // Reset form
+        document.getElementById('invoice-form').reset();
+        document.getElementById('inv-numero').value = await prochainNumero();
+        updateTTC();
+
       } catch (err) {
-        console.warn('Formspree error:', err);
+        alert('Erreur lors de l\'envoi. R√©essaye.');
+        console.error(err);
       }
-
-      // 3. Confirmation animée
-      const conf = document.getElementById('confirmation');
-      conf.classList.add('show');
-      setTimeout(() => conf.classList.remove('show'), 4000);
-
-      // Reset form & refresh
-      document.getElementById('invoice-form').reset();
-      document.getElementById('inv-numero').value = prochainNumero();
-      updateTTC();
-      renderFactures();
     });
 
     /* ============================================
@@ -1050,7 +973,6 @@
       }
     });
 
-    // Allow Enter key on admin password
     document.getElementById('admin-password').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -1066,29 +988,29 @@
       showLogin();
     });
 
+    let unsubAdmin = null;
+
     function showAdmin() {
       document.getElementById('view-login').style.display = 'none';
       document.getElementById('view-dashboard').style.display = 'none';
       document.getElementById('view-admin').style.display = 'block';
-      renderAdminKPIs();
-      renderAdminFactures();
+      listenAdminFactures();
     }
 
-    function renderAdminKPIs() {
-      const factures = getFactures();
+    function renderAdminKPIs(factures) {
       const now = new Date();
       const moisNoms = [
-        'Janvier','Février','Mars','Avril','Mai','Juin',
-        'Juillet','Août','Septembre','Octobre','Novembre','Décembre'
+        'Janvier','F√©vrier','Mars','Avril','Mai','Juin',
+        'Juillet','Ao√ªt','Septembre','Octobre','Novembre','D√©cembre'
       ];
       const currentMoisLabel = moisNoms[now.getMonth()] + ' ' + now.getFullYear();
 
       const total = factures.length;
       const aPayer = factures
-        .filter(f => f.statut !== 'Payée')
+        .filter(f => f.statut !== 'Pay√©e')
         .reduce((sum, f) => sum + (f.montantTTC || 0), 0);
       const payeCeMois = factures
-        .filter(f => f.statut === 'Payée' && f.mois === currentMoisLabel)
+        .filter(f => f.statut === 'Pay√©e' && f.mois === currentMoisLabel)
         .reduce((sum, f) => sum + (f.montantTTC || 0), 0);
 
       document.getElementById('kpi-total').textContent = total;
@@ -1096,83 +1018,88 @@
       document.getElementById('kpi-paye').textContent = formatMontant(payeCeMois);
     }
 
-    function renderAdminFactures() {
+    function listenAdminFactures() {
       const container = document.getElementById('admin-invoices-container');
-      const factures = getFactures();
 
-      if (factures.length === 0) {
-        container.innerHTML = '<div class="empty-state">Aucune facture dans le système.</div>';
-        return;
-      }
+      if (unsubAdmin) unsubAdmin();
 
-      const statuts = ['En attente', 'En cours', 'Payée', 'Problème'];
-      const emojis = { 'En attente': '🟡', 'En cours': '🔵', 'Payée': '🟢', 'Problème': '🔴' };
+      unsubAdmin = facturesRef.onSnapshot(snapshot => {
+        const factures = [];
+        snapshot.forEach(doc => factures.push({ id: doc.id, ...doc.data() }));
 
-      let html = `
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Monteur</th>
-                <th>N° Facture</th>
-                <th>Mois</th>
-                <th>Montant TTC</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Statut</th>
-              </tr>
-            </thead>
-            <tbody>
-      `;
+        renderAdminKPIs(factures);
 
-      factures.forEach((f, i) => {
-        const dateFormatted = new Date(f.dateEnvoi).toLocaleDateString('fr-FR', {
-          day: '2-digit', month: '2-digit', year: 'numeric'
+        if (factures.length === 0) {
+          container.innerHTML = '<div class="empty-state">Aucune facture dans le syst√®me.</div>';
+          return;
+        }
+
+        const statuts = ['En attente', 'En cours', 'Pay√©e', 'Probl√®me'];
+        const emojis = { 'En attente': 'üü°', 'En cours': 'üîµ', 'Pay√©e': 'üü¢', 'Probl√®me': 'üî¥' };
+
+        let html = `
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Monteur</th>
+                  <th>N¬∞ Facture</th>
+                  <th>Mois</th>
+                  <th>Montant TTC</th>
+                  <th>Description</th>
+                  <th>Date</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        factures.forEach(f => {
+          const dateFormatted = f.dateEnvoi ? new Date(f.dateEnvoi).toLocaleDateString('fr-FR', {
+            day: '2-digit', month: '2-digit', year: 'numeric'
+          }) : '‚Äî';
+
+          let optionsHTML = statuts.map(s =>
+            `<option value="${s}" ${f.statut === s ? 'selected' : ''}>${emojis[s]} ${s}</option>`
+          ).join('');
+
+          html += `
+            <tr>
+              <td style="font-weight:600">${f.prenom} ${f.nom}</td>
+              <td style="color:var(--highlight)">${f.numero}</td>
+              <td>${f.mois}</td>
+              <td style="font-weight:600">${formatMontant(f.montantTTC)}</td>
+              <td>${f.description}</td>
+              <td>${dateFormatted}</td>
+              <td>
+                <select class="status-select" data-id="${f.id}" onchange="updateStatut(this)">
+                  ${optionsHTML}
+                </select>
+              </td>
+            </tr>
+          `;
         });
 
-        let optionsHTML = statuts.map(s =>
-          `<option value="${s}" ${f.statut === s ? 'selected' : ''}>${emojis[s]} ${s}</option>`
-        ).join('');
-
-        html += `
-          <tr>
-            <td style="font-weight:600">${f.prenom} ${f.nom}</td>
-            <td style="color:var(--highlight)">${f.numero}</td>
-            <td>${f.mois}</td>
-            <td style="font-weight:600">${formatMontant(f.montantTTC)}</td>
-            <td>${f.description}</td>
-            <td>${dateFormatted}</td>
-            <td>
-              <select class="status-select" data-index="${i}" onchange="updateStatut(this)">
-                ${optionsHTML}
-              </select>
-            </td>
-          </tr>
-        `;
+        html += '</tbody></table></div>';
+        container.innerHTML = html;
       });
-
-      html += '</tbody></table></div>';
-      container.innerHTML = html;
     }
 
     function updateStatut(selectEl) {
-      const index = parseInt(selectEl.dataset.index);
+      const docId = selectEl.dataset.id;
       const newStatut = selectEl.value;
-      const factures = getFactures();
-      if (factures[index]) {
-        factures[index].statut = newStatut;
-        setFactures(factures);
-        renderAdminKPIs();
-      }
+      facturesRef.doc(docId).update({ statut: newStatut })
+        .catch(err => {
+          alert('Erreur mise √† jour statut.');
+          console.error(err);
+        });
     }
 
     /* ============================================
        BOOT
        ============================================ */
-    initTestData();
     initMoisSelect();
 
-    // Si admin connecté → admin dashboard, sinon si monteur → dashboard
     if (localStorage.getItem('dovira_admin') === 'true') {
       showAdmin();
     } else if (getProfil()) {
