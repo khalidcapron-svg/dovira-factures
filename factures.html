@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DOVIRA — Espace Factures</title>
+  <title>DOVIRA ‚Äî Espace Factures</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -175,7 +175,7 @@
     }
 
     /* ============================================
-       VUE 1 — LOGIN
+       VUE 1 ‚Äî LOGIN
        ============================================ */
     #view-login {
       display: flex;
@@ -215,7 +215,7 @@
     }
 
     /* ============================================
-       VUE 2 — DASHBOARD
+       VUE 2 ‚Äî DASHBOARD
        ============================================ */
     #view-dashboard { display: none; }
 
@@ -386,6 +386,102 @@
     /* ============================================
        RESPONSIVE
        ============================================ */
+    /* ============================================
+       ADMIN LINK ON LOGIN
+       ============================================ */
+    .admin-link {
+      display: block;
+      text-align: center;
+      margin-top: 24px;
+      color: #A78BFA;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: underline;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .admin-link:hover { color: #c4b5fd; }
+
+    .admin-password-group {
+      display: none;
+      margin-top: 16px;
+      animation: fadeInUp 0.3s ease;
+    }
+    .admin-password-group.show { display: block; }
+
+    .admin-password-group input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .admin-password-group input:focus {
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+    }
+
+    /* ============================================
+       VUE 3 ‚Äî ADMIN DASHBOARD
+       ============================================ */
+    #view-admin { display: none; }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      text-align: center;
+    }
+
+    .kpi-card .kpi-value {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 36px;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .kpi-card .kpi-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-select {
+      padding: 4px 8px;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+    }
+    .status-select option { background: #1a1a1a; color: #fff; }
+
+    @media (max-width: 640px) {
+      .kpi-row { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 640px) {
       .form-grid { grid-template-columns: 1fr; }
 
@@ -409,17 +505,17 @@
 <body>
 
   <!-- ============================================
-       VUE 1 — LOGIN
+       VUE 1 ‚Äî LOGIN
        ============================================ -->
   <div id="view-login">
     <div class="login-card card">
       <div class="logo">DOVIRA</div>
-      <p class="subtitle">Espace monteurs — Gestion des factures</p>
+      <p class="subtitle">Espace monteurs ‚Äî Gestion des factures</p>
 
       <form id="login-form" novalidate>
         <div class="form-group">
-          <label for="login-prenom">Prénom *</label>
-          <input type="text" id="login-prenom" placeholder="Ton prénom" required>
+          <label for="login-prenom">Pr√©nom *</label>
+          <input type="text" id="login-prenom" placeholder="Ton pr√©nom" required>
         </div>
         <div class="form-group">
           <label for="login-nom">Nom *</label>
@@ -429,28 +525,37 @@
           <label for="login-email">Email *</label>
           <input type="email" id="login-email" placeholder="ton@email.com" required>
         </div>
-        <button type="submit" class="btn-primary">Accéder à mon espace →</button>
+        <button type="submit" class="btn-primary">Acc√©der √† mon espace ‚Üí</button>
       </form>
+
+      <a class="admin-link" id="admin-link">Acc√®s admin ‚Üí</a>
+
+      <div class="admin-password-group" id="admin-password-group">
+        <input type="password" id="admin-password" placeholder="Mot de passe admin">
+        <button class="btn-primary" id="admin-login-btn" style="width:100%;justify-content:center;">
+          Connexion admin ‚Üí
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- ============================================
-       VUE 2 — DASHBOARD
+       VUE 2 ‚Äî DASHBOARD
        ============================================ -->
   <div id="view-dashboard">
 
     <!-- NAVBAR -->
     <nav class="navbar">
       <div class="nav-logo">DOVIRA</div>
-      <div class="nav-greeting" id="nav-greeting">Bonjour 👋</div>
-      <button class="btn-logout" id="btn-logout">Se déconnecter</button>
+      <div class="nav-greeting" id="nav-greeting">Bonjour üëã</div>
+      <button class="btn-logout" id="btn-logout">Se d√©connecter</button>
     </nav>
 
     <div class="dashboard-content">
 
-      <!-- SECTION 1 — FORMULAIRE DÉPÔT -->
+      <!-- SECTION 1 ‚Äî FORMULAIRE D√âP√îT -->
       <section>
-        <h2 class="section-title">DÉPOSER UNE <span>FACTURE</span></h2>
+        <h2 class="section-title">D√âPOSER UNE <span>FACTURE</span></h2>
 
         <div class="card">
           <form id="invoice-form" novalidate>
@@ -459,17 +564,17 @@
               <div class="form-group">
                 <label for="inv-mois">Mois de la prestation *</label>
                 <select id="inv-mois" required>
-                  <option value="">— Sélectionner —</option>
+                  <option value="">‚Äî S√©lectionner ‚Äî</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label for="inv-numero">Numéro de facture *</label>
+                <label for="inv-numero">Num√©ro de facture *</label>
                 <input type="text" id="inv-numero" placeholder="FAC-2026-001" required>
               </div>
 
               <div class="form-group">
-                <label for="inv-montant-ht">Montant HT (€) *</label>
+                <label for="inv-montant-ht">Montant HT (‚Ç¨) *</label>
                 <input type="number" id="inv-montant-ht" placeholder="1200" min="0" step="0.01" required>
               </div>
 
@@ -483,7 +588,7 @@
 
               <div class="form-group">
                 <label for="inv-montant-ttc">Montant TTC</label>
-                <input type="text" id="inv-montant-ttc" class="readonly-field" readonly value="0 €">
+                <input type="text" id="inv-montant-ttc" class="readonly-field" readonly value="0 ‚Ç¨">
               </div>
 
               <div class="form-group">
@@ -504,22 +609,59 @@
             </div>
 
             <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
-              Envoyer ma facture →
+              Envoyer ma facture ‚Üí
             </button>
           </form>
 
           <div class="confirmation" id="confirmation">
-            ✅ Facture envoyée ! Khalid a été notifié.
+            ‚úÖ Facture envoy√©e ! Khalid a √©t√© notifi√©.
           </div>
         </div>
       </section>
 
-      <!-- SECTION 2 — MES FACTURES -->
+      <!-- SECTION 2 ‚Äî MES FACTURES -->
       <section class="invoices-section">
         <h2 class="section-title">MES <span>FACTURES</span></h2>
 
         <div id="invoices-container"></div>
       </section>
+
+    </div>
+  </div>
+
+  <!-- ============================================
+       VUE 3 ‚Äî ADMIN DASHBOARD
+       ============================================ -->
+  <div id="view-admin">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-logo">DOVIRA</div>
+      <div class="nav-greeting" style="color:var(--highlight);font-weight:600;">Admin Dashboard</div>
+      <button class="btn-logout" id="btn-admin-logout">Se d√©connecter</button>
+    </nav>
+
+    <div class="dashboard-content" style="max-width:1100px;">
+
+      <!-- KPI CARDS -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-total">0</div>
+          <div class="kpi-label">Total factures</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-a-payer" style="color:#facc15;">0 ‚Ç¨</div>
+          <div class="kpi-label">Total √† payer</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-value" id="kpi-paye" style="color:#4ade80;">0 ‚Ç¨</div>
+          <div class="kpi-label">Total pay√© ce mois</div>
+        </div>
+      </div>
+
+      <!-- ALL INVOICES TABLE -->
+      <h2 class="section-title">TOUTES LES <span>FACTURES</span></h2>
+      <div id="admin-invoices-container"></div>
 
     </div>
   </div>
@@ -532,23 +674,23 @@
        UTILITAIRES
        ============================================ */
 
-    /** Formate un nombre en format français lisible : 1 200 € */
+    /** Formate un nombre en format fran√ßais lisible : 1 200 ‚Ç¨ */
     function formatMontant(n) {
-      return Number(n).toLocaleString('fr-FR') + ' €';
+      return Number(n).toLocaleString('fr-FR') + ' ‚Ç¨';
     }
 
-    /** Retourne le badge HTML pour un statut donné */
+    /** Retourne le badge HTML pour un statut donn√© */
     function badgeStatut(statut) {
       const map = {
-        'En attente': '<span class="badge badge-attente">🟡 En attente</span>',
-        'En cours':   '<span class="badge badge-encours">🔵 En cours</span>',
-        'Payée':      '<span class="badge badge-payee">🟢 Payée</span>',
-        'Problème':   '<span class="badge badge-probleme">🔴 Problème</span>',
+        'En attente': '<span class="badge badge-attente">üü° En attente</span>',
+        'En cours':   '<span class="badge badge-encours">üîµ En cours</span>',
+        'Pay√©e':      '<span class="badge badge-payee">üü¢ Pay√©e</span>',
+        'Probl√®me':   '<span class="badge badge-probleme">üî¥ Probl√®me</span>',
       };
       return map[statut] || statut;
     }
 
-    /** Retourne toutes les factures stockées */
+    /** Retourne toutes les factures stock√©es */
     function getFactures() {
       return JSON.parse(localStorage.getItem('dovira_factures') || '[]');
     }
@@ -558,13 +700,13 @@
       localStorage.setItem('dovira_factures', JSON.stringify(arr));
     }
 
-    /** Retourne le profil connecté ou null */
+    /** Retourne le profil connect√© ou null */
     function getProfil() {
       const d = localStorage.getItem('dovira_profil');
       return d ? JSON.parse(d) : null;
     }
 
-    /** Calcule le prochain numéro de facture incrémental */
+    /** Calcule le prochain num√©ro de facture incr√©mental */
     function prochainNumero() {
       const factures = getFactures();
       const year = new Date().getFullYear();
@@ -577,7 +719,7 @@
     }
 
     /* ============================================
-       DONNÉES DE TEST
+       DONN√âES DE TEST
        ============================================ */
     function initTestData() {
       if (localStorage.getItem('dovira_factures')) return;
@@ -593,7 +735,7 @@
           tva: 0,
           montantTTC: 450,
           description: 'Montage 6 Reels @TomyMotiv',
-          statut: 'Payée',
+          statut: 'Pay√©e',
           dateEnvoi: '2026-01-15',
           pdf: null,
         },
@@ -602,7 +744,7 @@
           nom: 'Benali',
           email: 'sofia@test.fr',
           numero: 'FAC-2026-002',
-          mois: 'Février 2026',
+          mois: 'F√©vrier 2026',
           montantHT: 600,
           tva: 20,
           montantTTC: 720,
@@ -622,8 +764,8 @@
     function initMoisSelect() {
       const select = document.getElementById('inv-mois');
       const moisNoms = [
-        'Janvier','Février','Mars','Avril','Mai','Juin',
-        'Juillet','Août','Septembre','Octobre','Novembre','Décembre'
+        'Janvier','F√©vrier','Mars','Avril','Mai','Juin',
+        'Juillet','Ao√ªt','Septembre','Octobre','Novembre','D√©cembre'
       ];
       const annees = [2025, 2026];
 
@@ -638,7 +780,7 @@
     }
 
     /* ============================================
-       CALCUL TTC EN TEMPS RÉEL
+       CALCUL TTC EN TEMPS R√âEL
        ============================================ */
     function updateTTC() {
       const ht = parseFloat(document.getElementById('inv-montant-ht').value) || 0;
@@ -660,7 +802,7 @@
       );
 
       if (factures.length === 0) {
-        container.innerHTML = '<div class="empty-state">Aucune facture déposée pour le moment.</div>';
+        container.innerHTML = '<div class="empty-state">Aucune facture d√©pos√©e pour le moment.</div>';
         return;
       }
 
@@ -669,7 +811,7 @@
           <table>
             <thead>
               <tr>
-                <th>N° Facture</th>
+                <th>N¬∞ Facture</th>
                 <th>Mois</th>
                 <th>Montant TTC</th>
                 <th>Description</th>
@@ -697,7 +839,7 @@
             <td>
               ${f.pdf
                 ? '<button class="btn-pdf" onclick="voirPDF(\'' + f.numero + '\')">Voir PDF</button>'
-                : '<span style="color:var(--text-muted);font-size:12px">—</span>'
+                : '<span style="color:var(--text-muted);font-size:12px">‚Äî</span>'
               }
             </td>
           </tr>
@@ -730,11 +872,12 @@
     }
 
     /* ============================================
-       NAVIGATION LOGIN ↔ DASHBOARD
+       NAVIGATION LOGIN ‚Üî DASHBOARD
        ============================================ */
     function showLogin() {
       document.getElementById('view-login').style.display = 'flex';
       document.getElementById('view-dashboard').style.display = 'none';
+      document.getElementById('view-admin').style.display = 'none';
     }
 
     function showDashboard() {
@@ -743,7 +886,8 @@
 
       document.getElementById('view-login').style.display = 'none';
       document.getElementById('view-dashboard').style.display = 'block';
-      document.getElementById('nav-greeting').textContent = 'Bonjour ' + profil.prenom + ' 👋';
+      document.getElementById('view-admin').style.display = 'none';
+      document.getElementById('nav-greeting').textContent = 'Bonjour ' + profil.prenom + ' üëã';
       document.getElementById('inv-numero').value = prochainNumero();
       updateTTC();
       renderFactures();
@@ -783,7 +927,7 @@
       document.getElementById('login-form').reset();
     });
 
-    // CALCUL TTC TEMPS RÉEL
+    // CALCUL TTC TEMPS R√âEL
     document.getElementById('inv-montant-ht').addEventListener('input', updateTTC);
     document.getElementById('inv-tva').addEventListener('change', updateTTC);
 
@@ -808,19 +952,19 @@
       }
 
       if (montantHT <= 0) {
-        alert('Le montant HT doit être supérieur à 0.');
+        alert('Le montant HT doit √™tre sup√©rieur √† 0.');
         return;
       }
 
-      // Vérifier si fichier est bien un PDF
+      // V√©rifier si fichier est bien un PDF
       if (pdfInput.files.length > 0 && pdfInput.files[0].type !== 'application/pdf') {
-        alert('Seuls les fichiers PDF sont acceptés.');
+        alert('Seuls les fichiers PDF sont accept√©s.');
         return;
       }
 
       const montantTTC = montantHT * (1 + tva / 100);
 
-      // Lire le PDF en base64 si présent
+      // Lire le PDF en base64 si pr√©sent
       let pdfBase64 = null;
       if (pdfInput.files.length > 0) {
         pdfBase64 = await new Promise((resolve) => {
@@ -830,7 +974,7 @@
         });
       }
 
-      // Créer l'objet facture
+      // Cr√©er l'objet facture
       const facture = {
         prenom: profil.prenom,
         nom: profil.nom,
@@ -857,11 +1001,11 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
-            _subject: 'Nouvelle facture Dovira — ' + profil.prenom + ' ' + profil.nom + ' — ' + numero,
-            'Prénom': profil.prenom,
+            _subject: 'Nouvelle facture Dovira ‚Äî ' + profil.prenom + ' ' + profil.nom + ' ‚Äî ' + numero,
+            'Pr√©nom': profil.prenom,
             'Nom': profil.nom,
             'Email monteur': profil.email,
-            'Numéro facture': numero,
+            'Num√©ro facture': numero,
             'Mois prestation': mois,
             'Montant HT': formatMontant(montantHT),
             'TVA': tva + '%',
@@ -873,7 +1017,7 @@
         console.warn('Formspree error:', err);
       }
 
-      // 3. Confirmation animée
+      // 3. Confirmation anim√©e
       const conf = document.getElementById('confirmation');
       conf.classList.add('show');
       setTimeout(() => conf.classList.remove('show'), 4000);
@@ -886,13 +1030,152 @@
     });
 
     /* ============================================
+       ADMIN DASHBOARD
+       ============================================ */
+
+    // Toggle admin password field
+    document.getElementById('admin-link').addEventListener('click', function() {
+      document.getElementById('admin-password-group').classList.toggle('show');
+      document.getElementById('admin-password').focus();
+    });
+
+    // Admin login
+    document.getElementById('admin-login-btn').addEventListener('click', function() {
+      const pw = document.getElementById('admin-password').value;
+      if (pw === 'dovira2026') {
+        localStorage.setItem('dovira_admin', 'true');
+        showAdmin();
+      } else {
+        alert('Mot de passe incorrect.');
+      }
+    });
+
+    // Allow Enter key on admin password
+    document.getElementById('admin-password').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('admin-login-btn').click();
+      }
+    });
+
+    // Admin logout
+    document.getElementById('btn-admin-logout').addEventListener('click', function() {
+      localStorage.removeItem('dovira_admin');
+      document.getElementById('admin-password').value = '';
+      document.getElementById('admin-password-group').classList.remove('show');
+      showLogin();
+    });
+
+    function showAdmin() {
+      document.getElementById('view-login').style.display = 'none';
+      document.getElementById('view-dashboard').style.display = 'none';
+      document.getElementById('view-admin').style.display = 'block';
+      renderAdminKPIs();
+      renderAdminFactures();
+    }
+
+    function renderAdminKPIs() {
+      const factures = getFactures();
+      const now = new Date();
+      const moisNoms = [
+        'Janvier','F√©vrier','Mars','Avril','Mai','Juin',
+        'Juillet','Ao√ªt','Septembre','Octobre','Novembre','D√©cembre'
+      ];
+      const currentMoisLabel = moisNoms[now.getMonth()] + ' ' + now.getFullYear();
+
+      const total = factures.length;
+      const aPayer = factures
+        .filter(f => f.statut !== 'Pay√©e')
+        .reduce((sum, f) => sum + (f.montantTTC || 0), 0);
+      const payeCeMois = factures
+        .filter(f => f.statut === 'Pay√©e' && f.mois === currentMoisLabel)
+        .reduce((sum, f) => sum + (f.montantTTC || 0), 0);
+
+      document.getElementById('kpi-total').textContent = total;
+      document.getElementById('kpi-a-payer').textContent = formatMontant(aPayer);
+      document.getElementById('kpi-paye').textContent = formatMontant(payeCeMois);
+    }
+
+    function renderAdminFactures() {
+      const container = document.getElementById('admin-invoices-container');
+      const factures = getFactures();
+
+      if (factures.length === 0) {
+        container.innerHTML = '<div class="empty-state">Aucune facture dans le syst√®me.</div>';
+        return;
+      }
+
+      const statuts = ['En attente', 'En cours', 'Pay√©e', 'Probl√®me'];
+      const emojis = { 'En attente': 'üü°', 'En cours': 'üîµ', 'Pay√©e': 'üü¢', 'Probl√®me': 'üî¥' };
+
+      let html = `
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Monteur</th>
+                <th>N¬∞ Facture</th>
+                <th>Mois</th>
+                <th>Montant TTC</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+      `;
+
+      factures.forEach((f, i) => {
+        const dateFormatted = new Date(f.dateEnvoi).toLocaleDateString('fr-FR', {
+          day: '2-digit', month: '2-digit', year: 'numeric'
+        });
+
+        let optionsHTML = statuts.map(s =>
+          `<option value="${s}" ${f.statut === s ? 'selected' : ''}>${emojis[s]} ${s}</option>`
+        ).join('');
+
+        html += `
+          <tr>
+            <td style="font-weight:600">${f.prenom} ${f.nom}</td>
+            <td style="color:var(--highlight)">${f.numero}</td>
+            <td>${f.mois}</td>
+            <td style="font-weight:600">${formatMontant(f.montantTTC)}</td>
+            <td>${f.description}</td>
+            <td>${dateFormatted}</td>
+            <td>
+              <select class="status-select" data-index="${i}" onchange="updateStatut(this)">
+                ${optionsHTML}
+              </select>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table></div>';
+      container.innerHTML = html;
+    }
+
+    function updateStatut(selectEl) {
+      const index = parseInt(selectEl.dataset.index);
+      const newStatut = selectEl.value;
+      const factures = getFactures();
+      if (factures[index]) {
+        factures[index].statut = newStatut;
+        setFactures(factures);
+        renderAdminKPIs();
+      }
+    }
+
+    /* ============================================
        BOOT
        ============================================ */
     initTestData();
     initMoisSelect();
 
-    // Si déjà connecté → dashboard direct
-    if (getProfil()) {
+    // Si admin connect√© ‚Üí admin dashboard, sinon si monteur ‚Üí dashboard
+    if (localStorage.getItem('dovira_admin') === 'true') {
+      showAdmin();
+    } else if (getProfil()) {
       showDashboard();
     }
   </script>
